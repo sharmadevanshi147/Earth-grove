@@ -1,67 +1,90 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import styles from './OurFounders.module.css'
-import placeholder from '/assets/Placeholder.png'
 
+/* ── Founder data (from Figma) ── */
 const FOUNDERS = [
   {
-    id: 1,
-    image: placeholder,
-    name: 'Aryan Mehta',
-    role: 'Principal Architect & Co-founder',
-    bio: 'With 20 years in sustainable design, Aryan leads Earth Grove\'s creative vision — blending modernism with vernacular wisdom.',
+    id: 'aanya',
+    name: 'Aanya Mehta',
+    image: '/assets/Placeholder.png',
+    bio: 'Aanya Mehta brings a grounded, context-driven approach rooted in Indian landscapes and lived experiences. With a strong focus on spatial storytelling and user needs, she shapes warm, functional environments, fostering collaboration, trust, and a design process that prioritizes people, culture, and everyday life.',
   },
   {
-    id: 2,
-    image: placeholder,
-    name: 'Priya Nair',
-    role: 'Design Director & Co-founder',
-    bio: 'Priya orchestrates every project\'s spatial narrative, ensuring each space resonates with the people who will live and work inside it.',
-  },
-  {
-    id: 3,
-    image: placeholder,
-    name: 'Devraj Sinha',
-    role: 'Urban Planner & Co-founder',
-    bio: 'Devraj brings a city-wide lens to every project — thinking beyond the building envelope to how structures shape communities.',
+    id: 'himanshi',
+    name: 'Himanshi Kaushik',
+    image: '/assets/Placeholder.png',
+    bio: 'An Oxford architecture graduate, brings global perspective and refined design sensibility. Her work balances research, material understanding, and human experience, shaping thoughtful spaces. She leads with clarity, precision, and a commitment to creating architecture that is both meaningful and enduring.',
   },
 ]
 
+/* ── Animation variants ── */
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.14 } },
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
+}
+
+/* ── Section ── */
 export default function OurFounders() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className={styles.section}>
+    <section ref={ref} className={styles.section} id="founders" aria-label="Our Founders">
       <motion.div
-        className={styles.header}
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={styles.inner}
+        variants={stagger}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
       >
-        <h2 className={styles.heading}>Our Founders</h2>
-      </motion.div>
+        {/* Heading */}
+        <motion.h2 className={styles.heading} variants={fadeUp}>
+          Our Founders
+        </motion.h2>
 
-      <div className={styles.grid}>
-        {FOUNDERS.map((f, i) => (
-          <motion.div
-            key={f.id}
-            className={styles.card}
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.75, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className={styles.imgWrap}>
-              <img src={f.image} alt={f.name} loading="lazy" />
-            </div>
-            <div className={styles.info}>
-              <h3 className={styles.name}>{f.name}</h3>
-              <p className={styles.role}>{f.role}</p>
-              <p className={styles.bio}>{f.bio}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+        {/* Cards */}
+        <motion.div className={styles.grid} variants={stagger}>
+          {FOUNDERS.map((founder) => (
+            <motion.div key={founder.id} className={styles.card} variants={fadeUp}>
+              {/* Photo */}
+              <div className={styles.cardImage}>
+                <img
+                  src={founder.image}
+                  alt={founder.name}
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Text */}
+              <div className={styles.cardBody}>
+                <h3 className={styles.founderName}>{founder.name}</h3>
+                <p className={styles.founderBio}>{founder.bio}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div variants={fadeUp}>
+          <a href="#about" className={styles.cta}>
+            More About Us
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

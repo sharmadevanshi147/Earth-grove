@@ -1,86 +1,166 @@
+/* ── Section ── */
 .section {
-  background: var(--color-forest-900);
-  padding: 120px var(--navbar-px);
+  width: 100%;
+  background: var(--color-bg);
+  padding: 96px var(--navbar-px);
+}
+
+/* ── Inner container ── */
+.inner {
+  max-width: 1728px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 56px;
 }
 
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: var(--text-label);
+/* ── Heading ── */
+.heading {
+  font-family: var(--font-display);
+  font-size: 80px;
   font-weight: 500;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--color-forest-300);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  padding: var(--space-10);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius-md);
-  background: rgba(255,255,255,0.02);
-  transition: background var(--duration-base) var(--ease-in-out),
-              border-color var(--duration-base) var(--ease-in-out);
-}
-
-.card:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.14);
-}
-
-.quoteMark {
-  font-family: var(--font-display);
-  font-size: 4rem;
-  line-height: 1;
-  color: var(--color-forest-400);
-  display: block;
-  margin-bottom: -16px;
-}
-
-.quote {
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--color-white-90);
-  line-height: var(--leading-loose);
-  flex: 1;
-}
-
-.attribution {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding-top: var(--space-6);
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.author {
-  font-family: var(--font-body);
-  font-size: var(--text-body-sm);
-  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
   color: var(--color-white);
+  text-align: center;
 }
 
-.company {
+/* ── Card ── */
+.card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 48px 40px;
+}
+
+/* ── Decorative quote marks ── */
+.quoteLeft,
+.quoteRight {
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.22);
+  flex-shrink: 0;
+  user-select: none;
+  align-self: flex-start;
+}
+
+/* ── Center content area ── */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  text-align: center;
+  /* lock height to the tallest slide so card doesn't resize */
+  min-height: 140px;
+  justify-content: center;
+}
+
+/* ── Animated slide ── */
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+/* ── Name ── */
+.name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* ── Quote body ── */
+.quote {
   font-family: var(--font-body);
-  font-size: var(--text-label);
+  font-size: 14px;
   font-weight: 400;
+  line-height: 1.75;
   color: var(--color-white-60);
-  letter-spacing: 0.02em;
+  max-width: 760px;
 }
 
-@media (max-width: 900px) {
-  .section { padding: 80px var(--space-6); }
-  .grid { grid-template-columns: 1fr; }
+/* ── Dot navigation ── */
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.25);
+  transition:
+    background 0.3s var(--ease-out-expo),
+    transform 0.3s var(--ease-out-expo);
+}
+
+.dotActive {
+  background: var(--color-white);
+  transform: scale(1.25);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px var(--space-8);
+  }
+
+  .heading {
+    font-size: 56px;
+  }
+
+  .card {
+    padding: 40px 28px;
+    gap: 16px;
+  }
+
+  .quoteLeft,
+  .quoteRight {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px var(--space-6);
+  }
+
+  .heading {
+    font-size: 40px;
+  }
+
+  .card {
+    padding: 32px 20px;
+    gap: 12px;
+  }
+
+  .quoteLeft,
+  .quoteRight {
+    font-size: 40px;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .content {
+    min-height: 180px;
+  }
 }

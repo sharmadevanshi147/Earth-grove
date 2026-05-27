@@ -2,47 +2,55 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import styles from './OurAccolades.module.css'
 
+/* ── Accolades (from Figma) ── */
 const ACCOLADES = [
-  { number: '01', award: 'Aga Khan Award for Architecture', year: '2023', body: 'Aga Khan Trust for Culture' },
-  { number: '02', award: 'World Architecture Festival — Finalist', year: '2022', body: 'WAF, Barcelona' },
-  { number: '03', award: 'Indian Institute of Architects Gold Medal', year: '2021', body: 'IIA National Council' },
-  { number: '04', award: 'Dezeen Award — Residential Category', year: '2021', body: 'Dezeen Magazine' },
-  { number: '05', award: 'RIBA International Prize — Longlisted', year: '2020', body: 'Royal Institute of British Architects' },
-  { number: '06', award: 'Architecture + Design Award — Platinum', year: '2019', body: 'A+D Magazine India' },
+  { id: 1, text: 'Winner - Best Architecture Firm, Delhi, 2026' },
+  { id: 2, text: 'Winner - The Aureum Architectural Excellence Award, 2026' },
+  { id: 3, text: 'Winner - Leela Gupta Award for Excellent Sustainable Architecture, 2026' },
 ]
 
+/* ── Animation variants ── */
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+}
+
+const slideIn = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
+}
+
+/* ── Section ── */
 export default function OurAccolades() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className={styles.section}>
+    <section ref={ref} className={styles.section} id="accolades" aria-label="Our Accolades">
       <motion.div
-        className={styles.header}
-        initial={{ opacity: 0, y: 30 }}
+        className={styles.inner}
+        initial={{ opacity: 0, y: 28 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p className={styles.eyebrow}>Recognition</p>
+        {/* Heading */}
         <h2 className={styles.heading}>Our Accolades</h2>
-      </motion.div>
 
-      <div className={styles.list}>
-        {ACCOLADES.map((a, i) => (
-          <motion.div
-            key={a.number}
-            className={styles.row}
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.65, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className={styles.number}>{a.number}</span>
-            <span className={styles.award}>{a.award}</span>
-            <span className={styles.body}>{a.body}</span>
-            <span className={styles.year}>{a.year}</span>
-          </motion.div>
-        ))}
-      </div>
+        {/* Numbered list */}
+        <motion.ol
+          className={styles.list}
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          {ACCOLADES.map((a) => (
+            <motion.li key={a.id} className={styles.row} variants={slideIn}>
+              <span className={styles.num}>{a.id}.</span>
+              <span className={styles.title}>{a.text}</span>
+            </motion.li>
+          ))}
+        </motion.ol>
+      </motion.div>
     </section>
   )
 }
