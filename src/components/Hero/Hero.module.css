@@ -1,0 +1,86 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 680px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Background ── */
+.bgWrapper {
+  position: absolute;
+  inset: 0 0 -40% 0;     /* extend bottom so parallax drift never shows a gap */
+  z-index: 0;
+  will-change: transform;
+}
+
+.bgImage,
+.bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 0%;   /* top-aligned: matches Figma Y:0 placement */
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.50);
+}
+
+/* ── Content ── */
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1728px;
+  margin: 0 auto;
+  padding: 0 var(--navbar-px);
+  padding-top: var(--navbar-height);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);          /* 32px gap between headline and buttons */
+  will-change: transform, opacity;
+}
+
+/* ── Headline ── */
+.headline {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-white);
+  max-width: 100%;
+}
+
+/* ── CTA row ── */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);          /* 16px gap between buttons */
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .content {
+    padding: 0 var(--space-8);
+    padding-top: var(--navbar-height);
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 0 var(--space-6);
+    padding-top: var(--navbar-height);
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

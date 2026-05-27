@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "earthgrove-dev",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+      "runtimeArgs": ["node_modules\\vite\\bin\\vite.js", "--port", "5174"],
+      "port": 5174
+    },
+    {
+      "name": "portfolio-dev",
+      "runtimeExecutable": "C:\\Windows\\System32\\cmd.exe",
+      "runtimeArgs": ["/c", "cd /d C:\\Users\\devan\\OneDrive\\Desktop\\Portfolio && node node_modules\\vite\\bin\\vite.js --port 5175"],
+      "port": 5175
+    }
+  ]
+}

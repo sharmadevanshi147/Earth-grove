@@ -1,0 +1,67 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  height: var(--navbar-height);      /* 78px */
+  padding: 16px var(--navbar-px);    /* 16px top/bottom, 64px sides */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Glassmorphism — dark forest-green tinted glass */
+  background: linear-gradient(
+    180deg,
+    rgba(13, 20, 14, 0.45) 0%,
+    rgba(13, 20, 14, 0.10) 100%
+  );
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+
+  transition:
+    background var(--duration-base) var(--ease-out-expo),
+    box-shadow var(--duration-base) var(--ease-out-expo);
+}
+
+/* Scrolled: darker glass + hairline separator */
+.scrolled {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 20, 14, 0.82) 0%,
+    rgba(13, 20, 14, 0.65) 100%
+  );
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ── Logo ── */
+.logoLink {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  height: 26px;
+  width: auto;
+}
+
+/* ── Nav link row ── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);   /* 40px between links */
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px var(--space-6);
+  }
+
+  .nav {
+    gap: var(--space-6);
+  }
+}

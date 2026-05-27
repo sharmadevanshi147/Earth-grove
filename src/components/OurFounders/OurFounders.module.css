@@ -1,0 +1,83 @@
+.section {
+  background: var(--color-forest-900);
+  padding: 120px var(--navbar-px);
+}
+
+.header {
+  margin-bottom: 72px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 500;
+  color: var(--color-white);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.imgWrap {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.imgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%);
+  transition: filter 0.4s var(--ease-in-out);
+}
+
+.card:hover .imgWrap img {
+  filter: grayscale(0%);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.role {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-forest-300);
+  text-transform: uppercase;
+}
+
+.bio {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: 400;
+  color: var(--color-white-60);
+  line-height: var(--leading-loose);
+}
+
+@media (max-width: 900px) {
+  .section { padding: 80px var(--space-6); }
+  .grid { grid-template-columns: 1fr; }
+}
