@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import NavLink from '../ui/NavLink'
 import logoSrc from '/assets/Logo.svg'
 import styles from './Navbar.module.css'
 
 const NAV_LINKS = [
-  { label: 'About',      href: '#about'    },
+  { label: 'About',      href: '/about'    },
   { label: 'Services',   href: '#services' },
   { label: 'Projects',   href: '#projects' },
   { label: 'Contact Us', href: '#contact'  },

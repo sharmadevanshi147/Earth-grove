@@ -12,28 +12,28 @@
   margin: 0 64px 64px;
   border-radius: 20px;
   overflow: hidden;
-  background: #0d4a2a;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 480px;
-}
-
-/* ── Left column ── */
-.ctaLeft {
-  padding: 80px 64px;
+  /* Building Blocks.png is the full background — it has a forest-green bg itself */
+  background-image: url('/assets/Building Blocks.png');
+  background-size: cover;
+  background-position: center right;
+  background-color: #0d3d20;
+  /* text lives directly inside, left-aligned */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 32px;
+  justify-content: flex-end;
+  gap: 28px;
+  padding: 80px 64px;
+  min-height: 480px;
 }
 
 .ctaHeading {
   font-family: var(--font-display);
-  font-size: 80px;
+  font-size: 96px;
   font-weight: 500;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--color-white);
+  max-width: 600px;
 }
 
 .ctaContact {
@@ -44,175 +44,122 @@
   letter-spacing: 0.01em;
 }
 
-/* ── Right column — image ── */
-.ctaRight {
-  position: relative;
-  overflow: hidden;
-}
-
-.ctaImage {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-}
-
 /* ═══════════════════════════
    FOOTER
 ════════════════════════════ */
 .footer {
-  background: var(--color-forest-900);
+  background: #161616;
   width: 100%;
 }
 
 .footerInner {
   max-width: 1728px;
   margin: 0 auto;
-  padding: 72px 64px 48px;
+  padding: 64px 64px 40px;
   display: flex;
   flex-direction: column;
   gap: 48px;
 }
 
-/* ── Top row: brand left, socials right ── */
-.footerTop {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
+/* ── Main row: brand-left | nav-right ── */
+.footerMain {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
+/* ── Left — brand block ── */
 .footerBrand {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .footerLogo {
-  height: 22px;
+  height: 20px;
   width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.80;
+  /* tint to match warm #FFF6EA logo color */
+  filter: brightness(0) invert(1) sepia(0.08) saturate(0.5);
+  opacity: 1;
 }
 
 .footerTagline {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.2;
   letter-spacing: var(--tracking-tight);
-  color: rgba(255, 255, 255, 0.70);
+  color: #F8F0F0;
 }
 
 /* ── Social icons ── */
 .socials {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding-top: 4px;
+  gap: 18px;
 }
 
 .socialLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.50);
+  color: #909090;
   text-decoration: none;
   transition: color 0.2s var(--ease-out-expo);
 }
 
 .socialLink:hover {
-  color: var(--color-white);
+  color: #F8F0F0;
 }
 
-/* ── Divider ── */
-.footerDivider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* ── Nav columns ── */
+/* ── Right — 3 plain nav columns ── */
 .footerNav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 16px;
 }
 
-.footerCol {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.colHeading {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.40);
-}
-
-.colLinks {
+.navCol {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
-.colLink {
+.navLink {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.60);
+  color: #909090;
   text-decoration: none;
   transition: color 0.2s var(--ease-out-expo);
 }
 
-.colLink:hover {
-  color: var(--color-white);
+.navCol:first-child .navLink:first-child {
+  color: #F1FCEF;
 }
 
-/* ── Bottom bar ── */
+.navLink:hover {
+  color: #F8F0F0;
+}
+
+/* ── Bottom bar — centered copyright ── */
 .footerBottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 24px;
+  text-align: center;
 }
 
 .footerCopy {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.35);
+  color: #909090;
   letter-spacing: 0.01em;
-}
-
-.footerBottomLinks {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.footerBottomLink {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.45);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  transition: color 0.2s var(--ease-out-expo);
-}
-
-.footerBottomLink:hover {
-  color: var(--color-white);
 }
 
 /* ═══════════════════════════
@@ -221,14 +168,12 @@
 @media (max-width: 1024px) {
   .ctaCard {
     margin: 0 40px 40px;
-  }
-
-  .ctaLeft {
     padding: 64px 48px;
+    min-height: 400px;
   }
 
   .ctaHeading {
-    font-size: 60px;
+    font-size: 72px;
   }
 
   .footerTagline {
@@ -243,47 +188,22 @@
 @media (max-width: 768px) {
   .ctaCard {
     margin: 0 24px 32px;
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .ctaLeft {
     padding: 56px 40px;
-    gap: 24px;
+    min-height: 360px;
   }
 
   .ctaHeading {
-    font-size: 48px;
+    font-size: 56px;
+    max-width: 100%;
   }
 
-  .ctaRight {
-    height: 280px;
-    position: relative;
+  .footerMain {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
-  .ctaImage {
-    position: absolute;
-  }
-
-  .footerTop {
-    flex-direction: column;
-    gap: 28px;
-  }
-
-  .footerNav {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footerBottom {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .footerBottomLinks {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  .footerTagline {
+    font-size: 32px;
   }
 }
 
@@ -291,14 +211,12 @@
   .ctaCard {
     margin: 0 16px 24px;
     border-radius: 16px;
-  }
-
-  .ctaLeft {
     padding: 48px 28px;
+    min-height: 300px;
   }
 
   .ctaHeading {
-    font-size: 38px;
+    font-size: 40px;
   }
 
   .footerInner {
@@ -306,11 +224,10 @@
   }
 
   .footerNav {
-    grid-template-columns: 1fr;
-    gap: 36px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .footerTagline {
-    font-size: 20px;
+    font-size: 26px;
   }
 }

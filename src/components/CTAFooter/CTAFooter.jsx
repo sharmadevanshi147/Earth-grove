@@ -44,20 +44,11 @@ function IconX() {
   )
 }
 
-/* ── Footer nav data ── */
-const FOOTER_COLS = [
-  {
-    heading: 'Studio',
-    links: ['Our Story', 'Our Team', 'Careers', 'Press'],
-  },
-  {
-    heading: 'Services',
-    links: ['Residential', 'Commercial', 'Landscape & Urban', 'Consulting'],
-  },
-  {
-    heading: 'Contact',
-    links: ['care@earthgrove.com', '909-800-6778', 'New Delhi, India', 'Book a Call'],
-  },
+/* ── Footer nav columns (3 plain-link columns, no headings) ── */
+const NAV_COLS = [
+  ['Home', 'About', 'Services', 'Projects', 'Contact Us'],
+  ['Commercial', 'Temple', 'Institutional', 'Residential', 'Interiors'],
+  ['Our Founders', 'Our Story'],
 ]
 
 const SOCIALS = [
@@ -69,48 +60,37 @@ const SOCIALS = [
 ]
 
 /* ── Section ── */
-export default function CTAFooter() {
+export default function CTAFooter({ showCTA = true }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <div ref={ref} id="contact" className={styles.wrapper}>
 
-      {/* ── Floating CTA Card ── */}
-      <motion.div
+      {/* ── Floating CTA Card (home page only) ── */}
+      {showCTA && <motion.div
         className={styles.ctaCard}
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Left — heading + contact */}
-        <div className={styles.ctaLeft}>
-          <h2 className={styles.ctaHeading}>
-            Build Your<br />Dream Today
-          </h2>
-          <p className={styles.ctaContact}>
-            care@earthgrove.com&nbsp;&nbsp;•&nbsp;&nbsp;909-800-6778
-          </p>
-        </div>
-
-        {/* Right — Building Blocks image */}
-        <div className={styles.ctaRight}>
-          <img
-            src="/assets/Building Blocks.png"
-            alt=""
-            className={styles.ctaImage}
-            aria-hidden="true"
-          />
-        </div>
-      </motion.div>
+        {/* Heading + contact — overlaid on the background image */}
+        <h2 className={styles.ctaHeading}>
+          Build Your<br />Dream Today
+        </h2>
+        <p className={styles.ctaContact}>
+          care@earthgrove.com&nbsp;&nbsp;•&nbsp;&nbsp;909-800-6778
+        </p>
+      </motion.div>}
 
       {/* ── Footer ── */}
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
 
-          {/* Top row: brand + socials */}
-          <div className={styles.footerTop}>
-            {/* Brand */}
+          {/* Main row: brand-left | nav-right */}
+          <div className={styles.footerMain}>
+
+            {/* Left — logo + tagline + socials */}
             <div className={styles.footerBrand}>
               <img
                 src="/assets/Logo.svg"
@@ -120,52 +100,40 @@ export default function CTAFooter() {
               <p className={styles.footerTagline}>
                 Creating Timeless ideas &amp;<br />Buildings of Tomorrow
               </p>
+              <div className={styles.socials}>
+                {SOCIALS.map(({ label, Icon }) => (
+                  <a
+                    key={label}
+                    href="#"
+                    className={styles.socialLink}
+                    aria-label={label}
+                  >
+                    <Icon />
+                  </a>
+                ))}
+              </div>
             </div>
 
-            {/* Social icons */}
-            <div className={styles.socials}>
-              {SOCIALS.map(({ label, Icon }) => (
-                <a
-                  key={label}
-                  href="#"
-                  className={styles.socialLink}
-                  aria-label={label}
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className={styles.footerDivider} />
-
-          {/* Nav columns */}
-          <div className={styles.footerNav}>
-            {FOOTER_COLS.map((col) => (
-              <div key={col.heading} className={styles.footerCol}>
-                <h4 className={styles.colHeading}>{col.heading}</h4>
-                <ul className={styles.colLinks}>
-                  {col.links.map((link) => (
+            {/* Right — 3 plain nav columns */}
+            <div className={styles.footerNav}>
+              {NAV_COLS.map((col, i) => (
+                <ul key={i} className={styles.navCol}>
+                  {col.map((link) => (
                     <li key={link}>
-                      <a href="#" className={styles.colLink}>{link}</a>
+                      <a href="#" className={styles.navLink}>{link}</a>
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom bar */}
-          <div className={styles.footerBottom}>
-            <span className={styles.footerCopy}>
-              © {new Date().getFullYear()} Earth Grove. All rights reserved.
-            </span>
-            <div className={styles.footerBottomLinks}>
-              {['About', 'Services', 'Projects', 'Contact Us'].map((link) => (
-                <a key={link} href="#" className={styles.footerBottomLink}>{link}</a>
               ))}
             </div>
+
+          </div>
+
+          {/* Bottom bar — centered copyright */}
+          <div className={styles.footerBottom}>
+            <span className={styles.footerCopy}>
+              Copyright {new Date().getFullYear()}, Earth Grove LLC. All Rights Reserved.
+            </span>
           </div>
 
         </div>
