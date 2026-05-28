@@ -3,65 +3,8 @@ import { motion, useInView } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Navbar    from '../../components/Navbar/Navbar'
 import CTAFooter from '../../components/CTAFooter/CTAFooter'
+import { PROJECTS } from '../../data/projects'
 import styles    from './Projects.module.css'
-
-/* ── Project data ── */
-const PROJECTS = [
-  {
-    id: 'nandan-prospera',
-    name: 'Nandan Prospera',
-    category: 'Commercial',
-    description:
-      'A cross-section commercial layout with 14 buildings placed radially around a central open space, combining vertical volume with considered density for a landmark urban presence.',
-    image: '/assets/Placeholder.png',
-    slug: 'commercial',
-  },
-  {
-    id: 'sri-venkateswara',
-    name: 'Sri Venkateswara Mandir',
-    category: 'Temple',
-    description:
-      'A traditional temple design drawing from classical Dravidian architecture, blending intricate stone-carving proportions with contemporary structural requirements.',
-    image: '/assets/Placeholder.png',
-    slug: 'temple',
-  },
-  {
-    id: 'horizon-school',
-    name: 'Horizon International School',
-    category: 'Institutional',
-    description:
-      'Designed around a central learning street, this campus integrates classrooms, labs, and open studios along a naturally lit spine that encourages collaboration.',
-    image: '/assets/Placeholder.png',
-    slug: 'institutional',
-  },
-  {
-    id: 'amar-coworking',
-    name: 'Amar Coworking Space',
-    category: 'Commercial',
-    description:
-      'A flexible coworking environment where workstations, private cabins, and lounge zones flow into one another, creating a rhythm of focus and community across multiple floors.',
-    image: '/assets/Placeholder.png',
-    slug: 'commercial',
-  },
-  {
-    id: 'grove-villas',
-    name: 'Grove Villas',
-    category: 'Residential',
-    description:
-      'A cluster of eight private villas arranged around a shared garden, each oriented to capture morning light and cross-ventilation with deep verandas for outdoor living.',
-    image: '/assets/Placeholder.png',
-    slug: 'residential',
-  },
-  {
-    id: 'niia-tech-park',
-    name: 'Niia Tech Park',
-    category: 'Commercial',
-    description:
-      'A contemporary tech campus designed around natural light and open collaboration, with landscaped courtyards between buildings where innovation thrives alongside nature.',
-    image: '/assets/Placeholder.png',
-    slug: 'commercial',
-  },
-]
 
 /* ── Animation variants ── */
 const gridVariants = {
@@ -135,8 +78,8 @@ export default function Projects() {
               <div className={styles.cardBody}>
                 <p className={styles.cardCategory}>{project.category}</p>
                 <h2 className={styles.cardTitle}>{project.name}</h2>
-                <p className={styles.cardDesc}>{project.description}</p>
-                <Link to={`/services/${project.slug}`} className={styles.cardBtn}>
+                <p className={styles.cardDesc}>{project.intro}</p>
+                <Link to={`/projects/${project.id}`} className={styles.cardBtn}>
                   Know More &nbsp;→
                 </Link>
               </div>

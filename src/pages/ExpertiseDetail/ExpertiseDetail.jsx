@@ -324,7 +324,7 @@ export default function ExpertiseDetail() {
               <div className={styles.cardBody}>
                 <h2 className={styles.cardTitle}>{project.name}</h2>
                 <p className={styles.cardDesc}>{project.description}</p>
-                <a href="#" className={styles.cardBtn}>Know More &nbsp;→</a>
+                <Link to={`/projects/${project.id}`} className={styles.cardBtn}>Know More &nbsp;→</Link>
               </div>
 
               {/* Image column */}
