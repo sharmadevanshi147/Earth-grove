@@ -1,6 +1,10 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import styles from './OurExpertise.module.css'
+
+/* motion-enabled Link */
+const MotionLink = motion(Link)
 
 /* ── 9 expertise types ── */
 const EXPERTISE = [
@@ -52,7 +56,12 @@ export default function OurExpertise() {
         animate={inView ? 'visible' : 'hidden'}
       >
         {EXPERTISE.map((item) => (
-          <motion.div key={item.id} className={styles.cell} variants={fadeIn}>
+          <MotionLink
+            key={item.id}
+            to={`/services/${item.id}`}
+            className={styles.cell}
+            variants={fadeIn}
+          >
             <img
               src="/assets/Placeholder.png"
               alt={item.label}
@@ -63,7 +72,7 @@ export default function OurExpertise() {
             <div className={styles.cellOverlay}>
               <span className={styles.cellLabel}>{item.label}</span>
             </div>
-          </motion.div>
+          </MotionLink>
         ))}
       </motion.div>
 

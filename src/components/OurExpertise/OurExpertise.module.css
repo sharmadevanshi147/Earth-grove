@@ -32,12 +32,14 @@
   max-width: 1728px;
 }
 
-/* ── Cell ── */
+/* ── Cell (rendered as <a> via MotionLink) ── */
 .cell {
+  display: block;
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 3;
   cursor: pointer;
+  text-decoration: none;
 }
 
 /* Image */
