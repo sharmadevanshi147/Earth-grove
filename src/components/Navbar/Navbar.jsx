@@ -29,9 +29,9 @@ export default function Navbar() {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
     >
       {/* Logo */}
-      <a href="/" className={styles.logoLink} aria-label="Earth Grove home">
+      <Link to="/" className={styles.logoLink} aria-label="Earth Grove home">
         <img src={logoSrc} alt="Earth Grove" className={styles.logo} />
-      </a>
+      </Link>
 
       {/* Nav links with staggered entry */}
       <nav className={styles.nav} aria-label="Main navigation">
